@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react"
 import ReactDOM from "react-dom/client"
 import { HashRouter, Routes, Route, Router } from "react-router-dom"
 import { initializeIcons } from "@fluentui/react"
-import eventBus from "./plugins/EventBus"
+
 import { Provider } from "react-redux"
 import { store } from "./redux/store"
 
@@ -12,7 +12,7 @@ import "./index.css"
 import Login from "./pages/login/Login"
 import Layout from "./pages/layout/Layout"
 import NoPage from "./pages/NoPage"
-import OneShot from "./pages/oneshot/OneShot"
+
 // import Chat from "./pages/chat/Chat";
 import Upload from "./pages/upload/Upload"
 import ChatWithSubject from "./pages/chat-with-subject/ChatWithSubject"
@@ -21,6 +21,7 @@ import { isShowConfiguration } from "./utils/isShowConfiguration"
 import { defaultHeader } from "./utils/localStorage"
 import axios from "axios"
 import { userTheme } from "./utils/userTheme"
+import eventBus from "./plugins/EventBus"
 
 initializeIcons("/fonts/")
 

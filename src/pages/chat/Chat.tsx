@@ -16,7 +16,7 @@ import backPng from "../../assets/back.png"
 import seeMore from "../../assets/icon-info-black.svg"
 import { Form, FormCheck } from "react-bootstrap"
 import { findIndex, isArray, forEach, find, uniqBy } from "lodash"
-import { AskResponsePrompt } from "../../api/models"
+// import { Approaches, AskResponsePrompt } from "../../api/models"
 import styles from "./Chat.module.css"
 import {
   chatApi,
@@ -40,21 +40,22 @@ import {
   getDefaultQuestion,
   chatSessionById,
   getConfiguration,
+  AskResponsePrompt,
 } from "../../api"
-import {
-  Answer,
-  AnswerError,
-  AnswerLoading,
-  AnswerInitChat,
-} from "../../components/Answer"
-import { QuestionInput } from "../../components/QuestionInput"
-import { UserChatMessage } from "../../components/UserChatMessage"
-import {
-  AnalysisPanel,
-  AnalysisPanelTabs,
-} from "../../components/AnalysisPanel"
-import { SettingsButton } from "../../components/SettingsButton"
-import { ClearChatButton } from "../../components/ClearChatButton"
+// import {
+//   Answer,
+//   AnswerError,
+//   AnswerLoading,
+//   AnswerInitChat,
+// } from "../../components/Anwser"
+// import { QuestionInput } from "../../components/QuestionInput"
+// import { UserChatMessage } from "../../components/UserChatMessage"
+// import {
+//   AnalysisPanel,
+//   AnalysisPanelTabs,
+// } from "../../components/AnalysisPanel"
+// import { SettingsButton } from "../../components/SettingsButton"
+// import { ClearChatButton } from "../../components/ClearChatButton"
 import eventBus from "../../plugins/EventBus"
 import { ToastContainer, toast } from "react-toastify"
 import { Tooltip as ReactTooltip } from "react-tooltip"
@@ -65,23 +66,17 @@ import {
   setConversationStorage,
 } from "../../utils/conversationExperience"
 import { useViewport } from "../../hooks/useViewport"
-import { ConfirmClearChatPopup } from "../../components/Chat"
-import { CreatePrompt, DropDownPrompt, Password } from "../../components/Prompt"
-import { CloseDebug } from "../../components/CloseDebug"
-import { QuestionInit } from "../../components/Configuration/QuestionInit"
-import { WhitelistInit } from "../../components/Configuration/WhitelistInit"
+// import { ConfirmClearChatPopup } from "../../components/Chat"
+// import { CreatePrompt, DropDownPrompt, Password } from "../../components/Prompt"
+// import { CloseDebug } from "../../components/CloseDebug"
+// import { QuestionInit } from "../../components/Configuration/QuestionInit"
+// import { WhitelistInit } from "../../components/Configuration/WhitelistInit"
 import { useNavigate, useParams } from "react-router-dom"
 import { checkIsExperience } from "../../utils/checkIsExperience"
 import { openWindowToUrl } from "../../utils/openWindowUrl"
 import { useStore } from "../../hooks/useStore"
 import { isShowConfiguration } from "../../utils/isShowConfiguration"
 import { checkBoxStyles } from "../../utils/checkBoxStyles"
-import {
-  errorChatResult,
-  ERROR_COUNT_MAX,
-  ERROR_DEFAULT,
-  ERROR_NETWORK_MAX,
-} from "../../utils/errorChatResult"
 import { defaultConfiguration } from "../../utils/defaultConfiguration"
 import {
   DEFAULT_MODEL_VERSION,
@@ -90,6 +85,25 @@ import {
   SEMANTIC_SEARCH,
 } from "../../utils/constants"
 import { userTheme } from "../../utils/userTheme"
+import {
+  ERROR_COUNT_MAX,
+  errorChatResult,
+  ERROR_DEFAULT,
+  ERROR_NETWORK_MAX,
+} from "../../utils/errorChatResult"
+import { AnalysisPanelTabs } from "../../components/AnalysisPanel/AnalysisPanelTabs"
+import { UserChatMessage } from "../../components/UserChatMessage/UserChatMessage"
+import { ClearChatButton } from "../../components/ClearChatButton/ClearChatButton"
+import { ConfirmClearChatPopup } from "../../components/Chat/ConfirmClearChatPopup"
+import { SettingsButton } from "../../components/SettingsButton/SettingsButton"
+import { AnalysisPanel } from "../../components/AnalysisPanel/AnalysisPanel"
+import { QuestionInput } from "../../components/QuestionInput/QuestionInput"
+import { CloseDebug } from "../../components/CloseDebug/CloseDebug"
+import { DropDownPrompt } from "../../components/Prompt/DropDownPrompt"
+import { AnswerInitChat } from "../../components/Anwser/AnswerInitChat"
+import { Answer } from "../../components/Anwser/Answer"
+import { AnswerLoading } from "../../components/Anwser/AnswerLoading"
+import { AnswerError } from "../../components/Anwser/AnswerError"
 
 const Chat = ({
   messageRequest,
